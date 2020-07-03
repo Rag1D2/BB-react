@@ -1,16 +1,32 @@
-import React from "react";
-import logo from "./logo192.png";
-import "./App.css";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import './App.css';
+import Header from './components/ui/header';
+import Footer from './components/ui/footer';
+import CharacterGrid from './components/characters/CharacterGrid';
 
 const App = () => {
+  const [items, setItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      const result = await axios(
+        'https://www.breakingbadapi.com/api/characters'
+      );
+
+      console.log(result.data);
+      setItems(result.data);
+      setIsLoading(false);
+    };
+    fetchItems();
+  }, []);
+
   return (
-    <div className="container">
-      Hello
-      <footer className="footer">
-        Made With <span role="img" aria-label="heart emoji">❤️</span> and
-        <span><img src={logo} className="App-logo" alt="logo" /></span>
-        By <a href="https://twitter.com/RagoneMatthew" target="_">This Guy</a>
-      </footer>
+    <div className='container'>
+      <Header />
+      <CharacterGrid isLoading={isLoading} items={items} />
+      <Footer />
     </div>
   );
 };
