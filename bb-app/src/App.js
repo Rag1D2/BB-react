@@ -2,7 +2,7 @@ import React from "react";
 import logo from "./logo192.png";
 import "./App.css";
 
-function App() {
+const App = () => {
   return (
     <div className="container">
       Hello
@@ -13,6 +13,6 @@ function App() {
       </footer>
     </div>
   );
-}
+};
 
 export default App;
