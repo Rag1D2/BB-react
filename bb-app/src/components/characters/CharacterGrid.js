@@ -1,15 +1,18 @@
-import React from 'react';
+import React from "react";
+import CharacterItem from "./CharacterItem";
 
 const CharacterGrid = ({ items, isLoading }) => {
-  return isLoading ? (
-    <h1>Loading...</h1>
-  ) : (
-    <section className='cards'>
-      {items.map((items) => (
-        <h1 key={items.char_id}>{items.name}</h1>
-      ))}
-    </section>
-  );
+  return isLoading
+    ? (
+      <h1>Loading...</h1>
+    )
+    : (
+      <section className="cards">
+        {items.map((item) => (
+          <CharacterItem key={items.char_id} item={item}></CharacterItem>
+        ))}
+      </section>
+    );
 };
 
 export default CharacterGrid;
